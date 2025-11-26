@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DEVec | Desarrollo Web y Sistemas</title>
+  <link rel="stylesheet" href="estilo.css" />
+  <link rel="icon" type="image/png" href="code.png" />
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- Lordicon -->
+  <script src="https://cdn.lordicon.com/lusqsztk.js"></script>
+</head>
+<body>
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container">
+      <img src="code.png" alt="Logo DEVec" style="width:100px;height:100px; margin-bottom:10px;" />
+
+      <h1>DEVec</h1>
+      <p>Desarrollo de sistemas integrados, automatización y páginas web profesionales.</p>
+      <a href="https://wa.me/50241376362" class="btn">Contáctanos por WhatsApp</a>
+    </div>
+  </header>
+
+  <!-- Sobre Nosotros -->
+  <section class="section" id="nosotros">
+    <div class="container about-card">
+      <h2><i class="fas fa-users"></i> Sobre Nosotros</h2>
+      <lord-icon
+        src="https://cdn.lordicon.com/dxjqoygy.json"
+        trigger="loop"
+        style="width:80px;height:80px">
+      </lord-icon>
+      <p>
+        En <strong>DEVec</strong> creemos en la tecnología como motor de crecimiento. 
+        Somos un equipo especializado en el desarrollo de sistemas integrados, 
+        páginas web modernas y soluciones de automatización para empresas grandes y pequeñas. 
+        Nuestro enfoque es consultivo y personalizado: escuchamos tus necesidades, 
+        diseñamos soluciones a medida y te acompañamos en cada etapa del proceso.
+      </p>
+    </div>
+  </section>
+
+  <!-- Portafolio -->
+  <section class="section" id="portafolio">
+    <div class="container">
+      <h2><i class="fas fa-briefcase"></i> Proyectos</h2>
+      <div class="grid">
+        <div class="card" onclick="openCarousel(0)">
+          <img src="facial1.jpg" alt="Asistencia facial" />
+          <h3>Asistencia Facial</h3>
+          <p>Control biométrico con reportes automáticos.</p>
+        </div>
+        <div class="card" onclick="openCarousel(1)">
+          <img src="in1.png" alt="ERP para talleres" />
+          <h3>ERP para Talleres</h3>
+          <p>Gestión de inventario, ventas y reportes.</p>
+        </div>
+        <div class="card" onclick="openCarousel(2)">
+          <img src="p1.png" alt="Web profesional" />
+          <h3>Web Profesional</h3>
+          <p>Diseño moderno y optimizado para móviles.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal Carrusel -->
+  <div id="carouselModal" class="modal">
+    <span class="close" onclick="closeCarousel()">&times;</span>
+    <div class="carousel-container">
+      <div class="carousel-slide">
+        <img id="carouselImage" src="" alt="Proyecto" />
+      </div>
+      <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+      <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    </div>
+  </div>
+
+  <!-- Cotización -->
+  <section class="section" id="cotizacion">
+    <div class="container">
+      <h2><i class="fas fa-file-signature"></i> Solicita una Cotización</h2>
+      
+      <div class="form-card">
+        <lord-icon
+          src="https://cdn.lordicon.com/ytklkgsc.json"
+          trigger="loop"
+          style="width:80px;height:80px">
+        </lord-icon>
+
+        <form id="quoteForm">
+          <div class="form-group">
+            <i class="fas fa-user"></i>
+            <input type="text" name="nombre" placeholder="Tu nombre" required />
+          </div>
+          <div class="form-group">
+            <i class="fas fa-envelope"></i>
+            <input type="email" name="correo" placeholder="Tu correo" required />
+          </div>
+          <div class="form-group">
+            <i class="fas fa-phone"></i>
+            <input type="tel" name="telefono" placeholder="Tu teléfono" required />
+          </div>
+          <div class="form-group">
+            <i class="fas fa-cogs"></i>
+            <select name="servicio" required>
+              <option value="">Servicio requerido</option>
+              <option value="Sistemas Integrados">Sistemas Integrados</option>
+              <option value="Página Web">Página Web</option>
+              <option value="Automatización">Automatización</option>
+              <option value="Branding">Branding</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <i class="fas fa-comment-dots"></i>
+            <textarea name="mensaje" placeholder="Describe tu necesidad"></textarea>
+          </div>
+          <button type="submit" class="btn">Enviar por WhatsApp</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2025 DEVec | Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <!-- Script WhatsApp -->
+  <script>
+    document.getElementById('quoteForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const nombre = this.nombre.value;
+      const correo = this.correo.value;
+      const telefonoCliente = this.telefono.value;
+      const servicio = this.servicio.value;
+      const mensaje = this.mensaje.value;
+
+      const numeroDestino = "50241376362"; // tu número en formato internacional
+      const texto = `📩 Nueva Cotización:\n\n👤 Nombre: ${nombre}\n📧 Correo: ${correo}\n📞 Teléfono: ${telefonoCliente}\n🛠 Servicio: ${servicio}\n📝 Mensaje: ${mensaje}`;
+
+      const url = `https://wa.me/${numeroDestino}?text=${encodeURIComponent(texto)}`;
+      window.open(url, '_blank');
+    });
+  </script>
+
+  <!-- Script Carrusel -->
+  <script>
+    // Arrays de imágenes por proyecto
+    const projectImages = [
+      ["facial1.jpg", "facial2.jpg", "facial3.jpg"],
+      ["in1.png", "in2.png", "in3.png", "in4.png"],
+      ["p1.png","p2.png","p3.png","p4.png"]
+    ];
+
+    let currentProject = 0;
+    let currentSlide = 0;
+
+    function openCarousel(projectIndex) {
+      currentProject = projectIndex;
+      currentSlide = 0;
+      document.getElementById("carouselModal").style.display = "block";
+      showSlide();
+    }
+
+    function closeCarousel() {
+      document.getElementById("carouselModal").style.display = "none";
+    }
+
+    function changeSlide(n) {
+      currentSlide += n;
+      if (currentSlide < 0) currentSlide = projectImages[currentProject].length - 1;
+      if (currentSlide >= projectImages[currentProject].length) currentSlide = 0;
+      showSlide();
+    }
+
+    function showSlide() {
+      document.getElementById("carouselImage").src = projectImages[currentProject][currentSlide];
+    }
+  </script>
+</body>
+</html>
